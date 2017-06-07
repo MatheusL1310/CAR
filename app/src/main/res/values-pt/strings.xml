@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">C.A.R</string>
+    <string-array name="postos">
+        <item>Texaco</item>
+        <item>Shell</item>
+        <item>Petrobras</item>
+        <item>Ipiranga</item>
+        <item>Outros</item>
+    </string-array>
 </resources>

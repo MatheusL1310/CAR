@@ -26,11 +26,12 @@ public class Abastecimento implements Serializable {
     private static double autonomia = 0.0;
 
     public Abastecimento (String data, double Km, double Litros, String posto){
-        this.data = data;
-        this.Km = Km;
-        this.Litros = Litros;
-        this.posto = posto;
+        this.setData(data);
+        this.setKm(Km);
+        this.setLitros(Litros);
+        this.setPosto(posto);
     }
+
     public String getData() {
         return data;
     }
@@ -38,12 +39,13 @@ public class Abastecimento implements Serializable {
     public void setData(String data) {
         this.data = data;
     }
+
     public double getKm() {
         return Km;
     }
 
     public void setKm(double km) {
-        Km = km;
+        this.Km = km;
     }
 
     public double getLitros() {
@@ -51,7 +53,7 @@ public class Abastecimento implements Serializable {
     }
 
     public void setLitros(double litros) {
-        Litros = litros;
+        this.Litros = litros;
     }
 
     public static ArrayList<Abastecimento> getListaAbastecimentos() {

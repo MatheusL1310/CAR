@@ -12,7 +12,7 @@ import java.util.List;
  * Created by matheus on 6/3/2017.
  */
 
-public class AbastecimentoAdapter extends RecyclerView.Adapter {
+public class AbastecimentoAdapter extends RecyclerView.Adapter<AbastecimentoHolder> {
 
     private List<Abastecimento> listaAbastecimentos;
 
@@ -25,19 +25,20 @@ public class AbastecimentoAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AbastecimentoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.gaveta_abastecimento, parent, false);
         AbastecimentoHolder gaveta = new AbastecimentoHolder(v);
         return gaveta;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(AbastecimentoHolder holder, int position) {
+        Abastecimento abast = listaAbastecimentos.get(position);
+        holder.atualizarInfoGaveta(abast);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listaAbastecimentos.size();
     }
 }

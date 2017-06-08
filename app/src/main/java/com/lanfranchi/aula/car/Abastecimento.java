@@ -18,14 +18,18 @@ public class Abastecimento implements Serializable {
     }
 
     private String data;
-    private int Km;
+    private double Km;
     private double Litros;
-    private Image bandeira;
+    private String posto;
+    private double kmTotal = 0.0;
+    private double totalLitros = 0.0;
+    private double autonomia = 0.0;
 
-    public Abastecimento (String data, int Km, double Litros){
+    public Abastecimento (String data, double Km, double Litros, String posto){
         this.data = data;
         this.Km = Km;
         this.Litros = Litros;
+        this.posto = posto;
     }
     public String getData() {
         return data;
@@ -34,11 +38,11 @@ public class Abastecimento implements Serializable {
     public void setData(String data) {
         this.data = data;
     }
-    public int getKm() {
+    public double getKm() {
         return Km;
     }
 
-    public void setKm(int km) {
+    public void setKm(double km) {
         Km = km;
     }
 
@@ -49,11 +53,45 @@ public class Abastecimento implements Serializable {
     public void setLitros(double litros) {
         Litros = litros;
     }
-    public Image getBandeira() {
-        return bandeira;
+
+    public static ArrayList<Abastecimento> getListaAbastecimentos() {
+        return listaAbastecimentos;
     }
 
-    public void setBandeira(Image bandeira) {
-        this.bandeira = bandeira;
+    public static void setListaAbastecimentos(ArrayList<Abastecimento> listaAbastecimentos) {
+        Abastecimento.listaAbastecimentos = listaAbastecimentos;
     }
+
+    public String getPosto() {
+        return posto;
+    }
+
+    public void setPosto(String posto) {
+        this.posto = posto;
+    }
+
+    public double getKmTotal() {
+        return kmTotal;
+    }
+
+    public void setKmTotal(double kmTotal) {
+        this.kmTotal = kmTotal;
+    }
+
+    public double getTotalLitros() {
+        return totalLitros;
+    }
+
+    public void setTotalLitros(double totalLitros) {
+        this.totalLitros = totalLitros;
+    }
+
+    public double getAutonomia() {
+        return autonomia;
+    }
+
+    public void setAutonomia(double autonomia) {
+        this.autonomia = autonomia;
+    }
+
 }

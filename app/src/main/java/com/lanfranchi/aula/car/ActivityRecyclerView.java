@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.ArrayList;
 
 /**
  * Created by matheus on 6/6/2017.
@@ -20,12 +19,11 @@ public class ActivityRecyclerView extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
-        Abastecimento.listaAbastecimentos = new ArrayList<>();
 
         RecyclerView rvLista = (RecyclerView)findViewById(R.id.rvLista);
         rvLista.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         abastecimentoAdapter = new AbastecimentoAdapter();
-        abastecimentoAdapter.setListaAbastecimentos(Abastecimento.listaAbastecimentos);
+        abastecimentoAdapter.setListaAbastecimentos(Abastecimento.obterListaAbastecimentos());
         rvLista.setAdapter(abastecimentoAdapter);
 
     }

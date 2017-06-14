@@ -14,7 +14,14 @@ public class Abastecimento implements Serializable {
     public static ArrayList<Abastecimento> listaAbastecimentos;
 
     public static ArrayList<Abastecimento> obterListaAbastecimentos(){
-        return Abastecimento.listaAbastecimentos;
+        if(Abastecimento.listaAbastecimentos == null){
+            Abastecimento.listaAbastecimentos = new ArrayList<>();
+        }
+            return Abastecimento.listaAbastecimentos;
+    }
+
+    public static void salvar(Abastecimento a){
+        //conecta no banco e adiciona no bd
     }
 
     private String data;
@@ -54,10 +61,6 @@ public class Abastecimento implements Serializable {
 
     public void setLitros(double litros) {
         this.Litros = litros;
-    }
-
-    public static ArrayList<Abastecimento> getListaAbastecimentos() {
-        return listaAbastecimentos;
     }
 
     public static void setListaAbastecimentos(ArrayList<Abastecimento> listaAbastecimentos) {

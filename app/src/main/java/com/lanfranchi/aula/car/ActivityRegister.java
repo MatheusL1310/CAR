@@ -1,13 +1,16 @@
 package com.lanfranchi.aula.car;
 
-import android.renderscript.Double2;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.Button;
+import android.content.Intent;
 
 public class ActivityRegister extends AppCompatActivity {
 
@@ -36,7 +39,7 @@ public class ActivityRegister extends AppCompatActivity {
         double km = Double.parseDouble(etKmAtual.getText().toString());
         double litros = Double.parseDouble(etLAbast.getText().toString());
 
-        if(km < Abastecimento.getKmTotal()){
+        if(km <= Abastecimento.getKmTotal()){
             Toast.makeText(this.getApplicationContext(),"Km menor que atual!", Toast.LENGTH_LONG).show();
             return;
         }else{
@@ -50,7 +53,7 @@ public class ActivityRegister extends AppCompatActivity {
         }
         Abastecimento.setAutonomia(km/Abastecimento.getTotalLitros());
         Abastecimento novoAbast = new Abastecimento(etData.getText().toString(),km,litros,spPostos.getSelectedItem().toString());
-        Abastecimento.listaAbastecimentos.add(novoAbast);
+        Abastecimento.obterListaAbastecimentos().add(novoAbast);
         finish();
     }
 }

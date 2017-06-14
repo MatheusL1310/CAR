@@ -1,7 +1,6 @@
 package com.lanfranchi.aula.car;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +13,21 @@ import java.util.List;
 
 public class AbastecimentoAdapter extends RecyclerView.Adapter<AbastecimentoHolder> {
 
-    private List<Abastecimento> listaAbastecimentos;
+    private List<Abastecimento> listaAbastecimentos = Abastecimento.obterListaAbastecimentos();
 
     public void setListaAbastecimentos(List<Abastecimento> lista) {
         this.listaAbastecimentos = lista;
     }
-
+/*
     public List<Abastecimento> getListaAbastecimentos(){
         return this.listaAbastecimentos;
     }
+    public AbastecimentoAdapter(){
+    }*/
 
     @Override
     public AbastecimentoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.gaveta_abastecimento, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.gaveta_abastecimento,null);
         AbastecimentoHolder gaveta = new AbastecimentoHolder(v);
         return gaveta;
     }

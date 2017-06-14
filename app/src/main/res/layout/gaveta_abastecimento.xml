@@ -49,9 +49,8 @@
 
     <ImageView
         android:id="@+id/ivBandeira"
-        android:layout_width="63dp"
-        android:layout_height="57dp"
-        app:srcCompat="@drawable/texaco"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintLeft_toRightOf="@+id/tvLitros"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"

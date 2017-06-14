@@ -5,6 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.widget.Spinner;
+import org.w3c.dom.Text;
 
 /**
  * Created by matheus on 6/3/2017.
@@ -31,10 +35,10 @@ public class AbastecimentoHolder extends RecyclerView.ViewHolder {
     }
 
     public void atualizarInfoGaveta(Abastecimento abastecimentoParaColocarNaGaveta){
-        tvData.setText( String.valueOf( abastecimentoParaColocarNaGaveta.getData()) );
-        tvKm.setText( String.valueOf(abastecimentoParaColocarNaGaveta.getKm() )+" Km");
-        tvLitros.setText( String.valueOf(abastecimentoParaColocarNaGaveta.getLitros())+" L");
-        abastecimentoDaGaveta = abastecimentoParaColocarNaGaveta;
+        this.tvData.setText( abastecimentoParaColocarNaGaveta.getData() );
+        this.tvKm.setText( abastecimentoParaColocarNaGaveta.getKm()+" Km");
+        this.tvLitros.setText( abastecimentoParaColocarNaGaveta.getLitros()+" L");
+
 
         String posto = abastecimentoParaColocarNaGaveta.getPosto();
         switch (posto){
@@ -54,6 +58,8 @@ public class AbastecimentoHolder extends RecyclerView.ViewHolder {
                 ivBandeira.setImageResource(R.drawable.postooutros);
                 break;
         }
+
+        abastecimentoDaGaveta = abastecimentoParaColocarNaGaveta;
 
     }
 

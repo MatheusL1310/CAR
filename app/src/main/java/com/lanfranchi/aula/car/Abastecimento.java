@@ -17,7 +17,7 @@ public class Abastecimento implements Serializable {
         if(Abastecimento.listaAbastecimentos == null){
             Abastecimento.listaAbastecimentos = new ArrayList<>();
         }
-            return Abastecimento.listaAbastecimentos;
+        return Abastecimento.listaAbastecimentos;
     }
 
     public static void salvar(Abastecimento a){

@@ -1,6 +1,12 @@
 package com.lanfranchi.aula.car;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
+
+import com.lanfranchi.aula.car.storage.BdHelper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,18 +18,6 @@ import java.util.ArrayList;
 public class Abastecimento implements Serializable {
 
     public static ArrayList<Abastecimento> listaAbastecimentos;
-
-    public static ArrayList<Abastecimento> obterListaAbastecimentos(){
-        if(Abastecimento.listaAbastecimentos == null){
-            Abastecimento.listaAbastecimentos = new ArrayList<>();
-        }
-        return Abastecimento.listaAbastecimentos;
-    }
-
-    public static void salvar(Abastecimento a){
-        //conecta no banco e adiciona no bd
-    }
-
     private String data;
     private double Km;
     private double Litros;
@@ -32,12 +26,61 @@ public class Abastecimento implements Serializable {
     private static double totalLitros = 0.0;
     private static double autonomia = 0.0;
 
-    public Abastecimento (String data, double Km, double Litros, String posto){
-        this.setData(data);
-        this.setKm(Km);
-        this.setLitros(Litros);
-        this.setPosto(posto);
+
+
+    public static ArrayList<Abastecimento> obterListaAbastecimentos(Context context){
+        if(listaAbastecimentos == null){
+            listaAbastecimentos = new ArrayList<>();
+        }
+        BdHelper bdHelper = new BdHelper(context);
+        SQLiteDatabase db = bdHelper.getReadableDatabase();
+
+        String[] projecao = {
+                "Km",
+                "Litros",
+                "data",
+                "posto"};
+
+        String orderBy = "id ASC";
+
+        Cursor cursor = db.query(
+                "my_table",
+                projecao,
+                null,
+                null,
+                null,
+                null,
+                orderBy
+        );
+
+        if(cursor.moveToFirst()){
+            do{
+                Abastecimento a = new Abastecimento();
+                a.setKm(cursor.getDouble(0));
+                a.setLitros(cursor.getDouble(1));
+                a.setData(cursor.getString(2));
+                a.setPosto(cursor.getString(3));
+                listaAbastecimentos.add(a);
+            } while (cursor.moveToNext());
+        }
+
+        return listaAbastecimentos;
     }
+
+    public static void salvar(Context context, Abastecimento a){
+        //conecta no banco e adiciona no bd
+        BdHelper bdHelper = new BdHelper(context);
+        SQLiteDatabase db = bdHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("km", a.getKm());
+        values.put("litros", a.getLitros());
+        values.put("data", a.getData());
+        values.put("posto", a.getPosto());
+
+        db.insert("my_table", null, values);
+    }
+
 
     public String getData() {
         return data;
@@ -63,9 +106,6 @@ public class Abastecimento implements Serializable {
         this.Litros = litros;
     }
 
-    public static void setListaAbastecimentos(ArrayList<Abastecimento> listaAbastecimentos) {
-        Abastecimento.listaAbastecimentos = listaAbastecimentos;
-    }
 
     public String getPosto() {
         return posto;

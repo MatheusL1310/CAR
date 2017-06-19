@@ -36,6 +36,7 @@ public class ActivityRegister extends AppCompatActivity {
     }
 
     public void cliqueAdicionarAbastecimento(View v){
+        Abastecimento novoAbast = new Abastecimento();
         double km = Double.parseDouble(etKmAtual.getText().toString());
         double litros = Double.parseDouble(etLAbast.getText().toString());
 
@@ -43,7 +44,7 @@ public class ActivityRegister extends AppCompatActivity {
             Toast.makeText(this.getApplicationContext(),"Km menor que atual!", Toast.LENGTH_LONG).show();
             return;
         }else{
-            Abastecimento.setKmTotal(km);
+            novoAbast.setKmTotal(km);
         }
         if(litros <= 0.0){
             Toast.makeText(this.getApplicationContext(),"Valor tem que ser positivo!", Toast.LENGTH_LONG).show();
@@ -52,8 +53,12 @@ public class ActivityRegister extends AppCompatActivity {
             Abastecimento.setTotalLitros(Abastecimento.getTotalLitros()+litros);
         }
         Abastecimento.setAutonomia(km/Abastecimento.getTotalLitros());
-        Abastecimento novoAbast = new Abastecimento(etData.getText().toString(),km,litros,spPostos.getSelectedItem().toString());
-        Abastecimento.obterListaAbastecimentos().add(novoAbast);
+
+        novoAbast.setLitros(litros);
+        novoAbast.setData(etData.getText().toString());
+        novoAbast.setPosto(spPostos.getSelectedItem().toString());
+
+        Abastecimento.salvar(ActivityRegister.this, novoAbast);
         finish();
     }
 }

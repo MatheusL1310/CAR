@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ import java.util.List;
 
 public class AbastecimentoAdapter extends RecyclerView.Adapter<AbastecimentoHolder> {
 
-    private List<Abastecimento> listaAbastecimentos = Abastecimento.obterListaAbastecimentos();
+    private ArrayList<Abastecimento> listaAbastecimentos;
 
-    public void setListaAbastecimentos(List<Abastecimento> lista) {
+    public void setListaAbastecimentos(ArrayList<Abastecimento> lista) {
         this.listaAbastecimentos = lista;
     }
 /*
@@ -27,7 +28,7 @@ public class AbastecimentoAdapter extends RecyclerView.Adapter<AbastecimentoHold
 
     @Override
     public AbastecimentoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.gaveta_abastecimento,null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.gaveta_abastecimento,parent, false);
         AbastecimentoHolder gaveta = new AbastecimentoHolder(v);
         return gaveta;
     }

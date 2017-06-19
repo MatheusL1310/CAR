@@ -23,8 +23,15 @@ public class ActivityRecyclerView extends AppCompatActivity{
         RecyclerView rvLista = (RecyclerView)findViewById(R.id.rvLista);
         rvLista.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         abastecimentoAdapter = new AbastecimentoAdapter();
-        abastecimentoAdapter.setListaAbastecimentos(Abastecimento.obterListaAbastecimentos());
+        abastecimentoAdapter.setListaAbastecimentos(Abastecimento.obterListaAbastecimentos(ActivityRecyclerView.this));
         rvLista.setAdapter(abastecimentoAdapter);
 
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(abastecimentoAdapter != null) {
+            abastecimentoAdapter.notifyDataSetChanged();
+        }
     }
 }
